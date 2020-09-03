@@ -1,32 +1,9 @@
-name: Build and Deploy
+name: GitHub Actions Build and Deploy Demo
 on:
   push:
     branches:
       - dev
 jobs:
-
-  install-and-test:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x]
-    steps:
-    - uses: actions/checkout@master
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@master
-      with:
-        node-version: ${{ matrix.node-version }}
-
-    - name: Install Yarn
-        run: npm install -g yarn
-
-    - name: Install and Test
-      run: |
-        yarn
-        yarn test
-      env:
-        CI: true
-
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
@@ -34,10 +11,9 @@ jobs:
       uses: actions/checkout@master
 
     - name: Build and Deploy
-      uses: Shon0221/react-fb-clone@dev
+      uses: JamesIves/github-pages-deploy-action@master
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages
         FOLDER: build
-        REACT_APP_TITLE: React FB Clone
-        BUILD_SCRIPT: cp .env.example .env.local && yarn && yarn build
+        BUILD_SCRIPT: npm install && npm run build
