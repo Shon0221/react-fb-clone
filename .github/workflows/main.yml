@@ -29,14 +29,3 @@ jobs:
       uses: codecov/codecov-action@v1
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
-    - name: Deploy
-      env:
-        USER_NAME   : Shon0221
-        USER_EMAIL  : yoy285437@gmail.com
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        REPOSITORY: ${{ github.repository }}
-      run: |
-        git config --global user.name $USER_NAME
-        git config --global user.email $USER_EMAIL
-        git remote set-url origin https://$ACCESS_TOKEN@github.com/${REPOSITORY}
-        npm run deploy
