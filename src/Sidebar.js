@@ -7,14 +7,18 @@ import PeopleIcon from '@material-ui/icons/People';
 import ChatIcon from '@material-ui/icons/Chat';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import VideoLibraryIcon from '@material-ui/icons/VideoLibrary';
+import { useStateVal } from './StateProvider';
 
 function Sidebar() {
+    // eslint-disable-next-line
+    const [{ user }, dispatch] = useStateVal();
+
     return (
         <div className="sidebar">
             <SidebarRow 
-                src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/c111-1557212209.jpg?crop=0.502xw:1.00xh;0.498xw,0&resize=640:*" 
-                title="Tony Stark"
-            />{/* title={user.displayName} */}
+                src={user.photoURL}
+                title={user.displayName} 
+            />
 
             <SidebarRow Icon={LocalHospitalIcon} title="COVID-19 Information Center"/>
             <SidebarRow Icon={EmojiFlagsIcon} title="Pages"/>
