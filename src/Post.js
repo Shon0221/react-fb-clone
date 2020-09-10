@@ -8,6 +8,7 @@ import NearMeUpIcon from '@material-ui/icons/NearMe';
 import { ExpandMoreOutlined } from '@material-ui/icons';
 
 function Post(props) {
+    console.log(props);
     return (
         <div className="post">
             <div className="post__top">
@@ -21,11 +22,11 @@ function Post(props) {
             </div>
 
             <div className="post__bottom">
-                <p>{props.msg}</p>
+                <p>{props.message}</p>
             </div>
 
             <div className="post__img">
-                <img src={props.img} alt="" />
+                <img src={props.image} alt="" />
             </div>
 
             <div className="post__options">
